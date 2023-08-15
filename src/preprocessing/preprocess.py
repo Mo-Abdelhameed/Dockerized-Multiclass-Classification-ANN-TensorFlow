@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd
 from typing import Dict, Tuple
@@ -141,7 +142,7 @@ def encode(input_data: pd.DataFrame, schema: MulticlassClassificationSchema, enc
     cat_features = schema.categorical_features
     if not cat_features:
         return input_data
-    if encoder is not None:
+    if encoder is not None and os.path.exists(paths.ENCODER_FILE):
         encoder = load(paths.ENCODER_FILE)
         input_data = encoder.transform(input_data)
         return input_data
@@ -212,7 +213,7 @@ def remove_outliers_zscore(input_data: pd.DataFrame, column: str, target: pd.Ser
     z_scores = np.abs(zscore(input_data[column]))
     condition = z_scores < threshold
     after_removal = input_data[condition]
-    if (after_removal.shape[0] / input_data.shape[0]) < 0.1:
+    if (after_removal.shape[0] / input_data.shape[0]) > 0.9:
         if target is not None:
             return input_data[condition], target[condition]
         else:
