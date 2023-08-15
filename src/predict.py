@@ -29,7 +29,7 @@ def create_predictions_dataframe(
 
     Args:
         predictions_arr (np.ndarray): Predicted probabilities from predictor model.
-        class_names List[str]: List of target classes (labels).
+        class_names (List[str]): List of target classes (labels).
         ids (pd.Series): id field values for the provided data.
         id_field_name (str): Name to use for the id field.
         return_proba (bool): If true, returns the probabilities of the predicted classes.

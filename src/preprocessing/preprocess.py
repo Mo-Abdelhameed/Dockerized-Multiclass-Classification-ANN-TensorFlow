@@ -11,8 +11,8 @@ from config import paths
 from imblearn.over_sampling import SMOTE
 from logger import get_logger
 
-
 logger = get_logger(task_name='preprocess')
+
 
 def impute_numeric(input_data: pd.DataFrame, column: str, value='median') -> pd.DataFrame:
     """
@@ -201,7 +201,7 @@ def normalize(input_data: pd.DataFrame, schema: MulticlassClassificationSchema, 
     return input_data
 
 
-def remove_outliers_zscore(input_data: pd.DataFrame, column: str, target: pd.Series = None)\
+def remove_outliers_zscore(input_data: pd.DataFrame, column: str, target: pd.Series = None) \
         -> (pd.DataFrame, pd.Series):
     """
     Removes rows that have been identified as outliers using the z-score method according to a given column.

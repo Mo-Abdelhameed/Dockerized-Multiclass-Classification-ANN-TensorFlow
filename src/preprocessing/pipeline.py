@@ -1,4 +1,3 @@
-import os
 from typing import List, Any
 import pandas as pd
 from schema.data_schema import MulticlassClassificationSchema
@@ -30,7 +29,8 @@ def create_pipeline(schema: MulticlassClassificationSchema) -> List[Any]:
     return pipeline
 
 
-def run_testing_pipeline(data: pd.DataFrame, data_schema: MulticlassClassificationSchema, pipeline: List) -> pd.DataFrame:
+def run_testing_pipeline(data: pd.DataFrame, data_schema: MulticlassClassificationSchema, pipeline: List)\
+        -> pd.DataFrame:
     """
         Transforms the data by passing it through every step of the given pipeline.
 
@@ -56,5 +56,3 @@ def run_testing_pipeline(data: pd.DataFrame, data_schema: MulticlassClassificati
         else:
             data = stage(data, column)
     return data
-
-
